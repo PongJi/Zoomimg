@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#min{
+				width: 400px;
+				height: 400px;
+				border: 1px solid gray;
+				position: relative;
+				margin: 20px;
+				cursor: move;
+			}
+			#max{
+				width:400px;
+				height: 400px;
+				overflow: hidden;
+				border: 1px solid gray;
+				position: absolute;
+				top: 0;
+				left: 400px;
+				margin:20px 40px;
+				display: none;
+			}
+			.div{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: #000000;
+				opacity: 0.3;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="min">
+			<img src="img/1.jpg" width="400"/>
+			<div class="div"></div>
+		</div>
+		<div id="max">
+			<img src="img/2.jpg" id="img"/>
+		</div>
+		<script type="text/javascript">
+			var box=document.getElementById('min')
+			var div=document.getElementsByClassName('div')[0]
+			var max=document.getElementById('max')
+			var img=document.getElementById('img')
+			box.onmousemove=function(e){
+				//显示鼠标指针的位置，-100让鼠标位置出现在div的中间
+				var x=e.pageX-100
+				var y=e.pageY-100
+
+				if(x>=200){
+					x=200
+				}
+				if(y>=200){
+					y=200
+				}
+				if(x<=0){
+					x=0
+				}
+				if(y<=0){
+					y=0
+				}
+				div.style.left=x+'px'
+				div.style.top=y+'px'
+				//console.log(y)
+				div.style.display='block'
+				max.style.display='block'
+				img.style.transform='translate('+-2*x+'px,'+-2*y+'px)'
+			}
+			box.onmouseout=function(){
+				div.style.display='none'
+				max.style.display='none'
+			}
+		</script>
+	</body>
+</html>
